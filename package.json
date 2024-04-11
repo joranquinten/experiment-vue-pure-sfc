@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "test": "vitest --dom",
+    "test": "vitest --dom --coverage",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
@@ -16,6 +16,7 @@
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "@vitejs/plugin-vue": "^5.0.4",
+    "@vitest/coverage-v8": "^1.5.0",
     "@vue/test-utils": "^2.4.5",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
