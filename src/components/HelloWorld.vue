@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-
+import Counter from './Counter.vue';
 defineProps<{ msg: string }>()
 
 const count = ref(0)
@@ -16,6 +16,8 @@ const count = ref(0)
       <code>components/HelloWorld.vue</code> to test HMR
     </p>
   </div>
+
+  <Counter />
 
   <p>
     Check out
