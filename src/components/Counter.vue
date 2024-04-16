@@ -2,7 +2,7 @@
 import { defineComponent, ref } from "vue";
 import type { Ref } from "vue";
 
-export default defineComponent({
+const Counter = defineComponent({
   name: "Counter",
   props: {
     min: {
@@ -46,6 +46,7 @@ export default defineComponent({
     };
   },
 });
+export default Counter;
 </script>
 
 <template>
