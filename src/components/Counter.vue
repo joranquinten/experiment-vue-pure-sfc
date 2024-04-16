@@ -1,33 +1,51 @@
-<script setup lang="ts">
-import { ref } from "vue";
+<script lang="ts">
+import { defineComponent, ref } from "vue";
 import type { Ref } from "vue";
 
-const props = withDefaults(defineProps<{ min?: number; max?: number }>(), {
-  min: 0,
-  max: 10,
+export default defineComponent({
+  name: "Counter",
+  props: {
+    min: {
+      type: Number,
+      default: 0,
+    },
+    max: {
+      type: Number,
+      default: 10,
+    },
+  },
+  setup(props) {
+    const isDirty: Ref<boolean> = ref(false);
+    const count: Ref<number> = ref(0);
+
+    const reset = (): void => {
+      count.value = 0;
+      isDirty.value = false;
+    };
+
+    const increment = (): void => {
+      if (count.value < props.max) {
+        count.value++;
+        isDirty.value = true;
+      }
+    };
+
+    const decrement = (): void => {
+      if (count.value > props.min) {
+        count.value--;
+        isDirty.value = true;
+      }
+    };
+
+    return {
+      count,
+      isDirty,
+      reset,
+      increment,
+      decrement,
+    };
+  },
 });
-
-const isDirty: Ref<boolean> = ref(false);
-const count: Ref<number> = ref(0);
-
-const reset = (): void => {
-  count.value = 0;
-  isDirty.value = false;
-};
-
-const increment = (): void => {
-  if (count.value < props.max) {
-    count.value++;
-    isDirty.value = true;
-  }
-};
-
-const decrement = (): void => {
-  if (count.value > props.min) {
-    count.value--;
-    isDirty.value = true;
-  }
-};
 </script>
 
 <template>
@@ -41,11 +59,7 @@ const decrement = (): void => {
       >
         increase
       </button>
-      <button
-        @click="reset"
-        data-testid="reset"
-        :disabled="!isDirty"
-      >
+      <button @click="reset" data-testid="reset" :disabled="!isDirty">
         reset
       </button>
       <button
