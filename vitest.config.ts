@@ -5,5 +5,6 @@ export default mergeConfig(viteConfig, defineConfig({
     test: {
         globals: true,
         environment: 'happy-dom',
+        includeSource: ['src/components/**/*.vue'], 
     },
 }))
